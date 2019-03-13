@@ -1,0 +1,9 @@
+{
+  "name": "@livingdocs/semantic-release-presets",
+  "version": "1.0.0",
+  "author": "Marc Bachmann <marc.brookman@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "semantic-release": "^15.1.4"
+  }
+}

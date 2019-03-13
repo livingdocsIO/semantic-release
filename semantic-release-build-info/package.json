@@ -1,0 +1,13 @@
+{
+  "name": "@livingdocs/semantic-release-build-info",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Marc Bachmann <marc.brookman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "env-ci": "^3.2.0"
+  },
+  "peerDependencies": {
+    "semantic-release": "^15.1.4"
+  }
+}

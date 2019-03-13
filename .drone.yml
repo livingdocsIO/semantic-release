@@ -1,0 +1,86 @@
+---
+kind: pipeline
+name: default
+
+clone:
+  depth: 50
+
+steps:
+- name: eslint
+  image: marcbachmann/eslint:4.19.1
+  environment:
+    GH_TOKEN:
+      from_secret: GH_TOKEN
+
+- name: docker
+  image: docker
+  volumes:
+    - name: dockersocket
+      path: /var/run/docker.sock
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: DOCKER_PASSWORD
+    DOCKER_USERNAME:
+      from_secret: DOCKER_USERNAME
+  commands:
+    - |
+      echo $DOCKER_PASSWORD | docker login -u="$DOCKER_USERNAME" --password-stdin 1>/dev/null
+
+      SHA_TAG=livingdocs/semantic-release:sha-$DRONE_COMMIT_SHA
+      docker build -t $SHA_TAG .
+      docker push $SHA_TAG
+
+      echo -----------------
+      echo Docker Tag: $SHA_TAG
+      echo -----------------
+
+- name: release
+  image: livingdocs/semantic-release:sha-${DRONE_COMMIT_SHA}
+  environment:
+    GH_TOKEN:
+      from_secret: GH_TOKEN
+
+volumes:
+- name: dockersocket
+  host:
+    path: /var/run/docker.sock
+
+trigger:
+  event: [push]
+
+---
+kind: pipeline
+name: docker-release
+clone:
+  disable: true
+
+steps:
+- name: tag
+  image: docker
+  volumes:
+    - name: dockersocket
+      path: /var/run/docker.sock
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: DOCKER_PASSWORD
+    DOCKER_USERNAME:
+      from_secret: DOCKER_USERNAME
+  commands:
+    - echo $DOCKER_PASSWORD | docker login -u="$DOCKER_USERNAME" --password-stdin 1>/dev/null
+    - docker pull livingdocs/semantic-release:sha-$DRONE_COMMIT_SHA
+    - docker tag livingdocs/semantic-release:sha-$DRONE_COMMIT_SHA livingdocs/semantic-release:$DRONE_TAG
+    - docker push livingdocs/semantic-release:$DRONE_TAG
+
+volumes:
+- name: dockersocket
+  host:
+    path: /var/run/docker.sock
+
+trigger:
+  event: [tag]
+
+---
+kind: signature
+hmac: ebc6cab32ed019d78e87ca6df3a550fccd5a466befc1b77b42696cc73c9a0527
+
+...
