@@ -2,8 +2,9 @@ const SemanticReleaseError = require('@semantic-release/error')
 
 module.exports = {
   async verifyRelease (pluginConfig, context) {
-    const baseBranch = context.config.branch
+    const baseBranch = context.config && context.config.branch
     const nextRelease = context.nextRelease
+    if (!baseBranch || !nextRelease) return true
 
     const whitelist = pluginConfig.whitelist || []
     if (!whitelist.length) return true
