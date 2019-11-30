@@ -7,7 +7,8 @@
     "@livingdocs/semantic-release-build-info": "file:semantic-release-build-info",
     "@livingdocs/semantic-release-presets": "file:semantic-release-presets",
     "@livingdocs/semantic-release-whitelist": "file:semantic-release-whitelist",
-    "semantic-release": "^15.1.4"
+    "semantic-release": "^15.1.4",
+    "set-ci": "^1.1.0"
   },
   "release": {
     "extends": "@livingdocs/semantic-release-presets/github"
