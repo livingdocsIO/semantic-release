@@ -1,9 +1,9 @@
-FROM node:12-alpine
+FROM node:16-alpine
 ADD . /release
 WORKDIR /release
 
 RUN apk add tini git bash --no-cache && \
-    npm install && \
+    npm ci && \
     npm cache clear --force && \
     rm -rf \
       /usr/share/man/tmp/* \
