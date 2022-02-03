@@ -1,9 +1,18 @@
 const SemanticReleaseError = require('@semantic-release/error')
 
 module.exports = {
-  async verifyRelease (pluginConfig, context) {
-    const baseBranch = context.config && context.config.branch
+  async verifyCondition (pluginConfig, context) {
+    if (context.options.branch) {
+      throw new SemanticReleaseError(
+        `The 'branch' option got replaced by 'branches' in semantic-release. ` +
+        `Please update the 'releases' configuration in the package.json.`,
+        'ENOTSUPPORTED'
+      )
+    }
+
+    const baseBranch = context.options.branches
     const nextRelease = context.nextRelease
+
     if (!baseBranch || !nextRelease) return true
 
     const whitelist = pluginConfig.whitelist || []

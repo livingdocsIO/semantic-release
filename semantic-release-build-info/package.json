@@ -4,10 +4,7 @@
   "main": "index.js",
   "author": "Marc Bachmann <marc.brookman@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "env-ci": "^3.2.0"
-  },
   "peerDependencies": {
-    "semantic-release": "^15.1.4"
+    "semantic-release": "^19.0.2"
   }
 }
