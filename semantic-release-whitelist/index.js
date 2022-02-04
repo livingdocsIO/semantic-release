@@ -10,7 +10,7 @@ module.exports = {
       )
     }
 
-    const baseBranch = context.options.branches
+    const baseBranch = context.options.branches[0]
     const nextRelease = context.nextRelease
 
     if (!baseBranch || !nextRelease) return true
