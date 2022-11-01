@@ -4,10 +4,10 @@
   "author": "Marc Bachmann <marc.brookman@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@livingdocs/semantic-release-build-info": "file:semantic-release-build-info",
     "@livingdocs/semantic-release-presets": "file:semantic-release-presets",
-    "@livingdocs/semantic-release-whitelist": "file:semantic-release-whitelist",
-    "semantic-release": "^19.0.2"
+    "@semantic-release/error": "^3.0.0",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "semantic-release": "^19.0.5"
   },
   "release": {
     "extends": "@livingdocs/semantic-release-presets/github"

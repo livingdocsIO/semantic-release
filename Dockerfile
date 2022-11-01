@@ -1,4 +1,4 @@
-FROM livingdocs/node:16
+FROM livingdocs/node:18
 ADD . /release
 WORKDIR /release
 
