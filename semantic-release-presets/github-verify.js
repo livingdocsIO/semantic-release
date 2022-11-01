@@ -2,8 +2,8 @@ module.exports = {
   'plugins': [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
-    '@livingdocs/semantic-release-build-info',
-    ['@livingdocs/semantic-release-whitelist', {
+    require.resolve('./plugin-build-info'),
+    [require.resolve('./plugin-whitelist'), {
       whitelist: [{
         baseBranch: '^release-',
         types: ['initial', 'patch']

@@ -4,7 +4,7 @@
   "author": "Marc Bachmann <marc.brookman@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "semantic-release": "^19.0.2"
+    "semantic-release": "^19.0.5"
   },
   "dependencies": {
     "@semantic-release/release-notes-generator": "^10.0.3"

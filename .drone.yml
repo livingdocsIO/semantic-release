@@ -13,7 +13,7 @@ steps:
       from_secret: GH_TOKEN
 
 - name: docker
-  image: livingdocs/docker-node:20.10
+  image: livingdocs/docker-node:22-16
   volumes:
     - name: dockersocket
       path: /var/run/docker.sock
@@ -56,7 +56,7 @@ clone:
 
 steps:
 - name: tag
-  image: livingdocs/docker-node:20.10
+  image: livingdocs/docker-node:22-16
   volumes:
     - name: dockersocket
       path: /var/run/docker.sock
@@ -79,6 +79,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 23a1a55f19bbe37fe9a349f20b4d9790b311e04bff88c18bc7d912dfbf9c5a91
+hmac: 7d537173eb3c82757c9eeac830b45c7d36ab6b5faeee2339c05b7afeb763775c
 
 ...
