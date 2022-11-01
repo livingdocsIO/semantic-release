@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 git fetch --tags -q
 
 if [ "$DRY_RUN" = "true" ]; then
