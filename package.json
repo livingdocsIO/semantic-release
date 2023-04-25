@@ -7,7 +7,7 @@
     "@livingdocs/semantic-release-presets": "file:semantic-release-presets",
     "@semantic-release/error": "^3.0.0",
     "@semantic-release/release-notes-generator": "^10.0.3",
-    "semantic-release": "^19.0.5"
+    "semantic-release": "^21.0.1"
   },
   "release": {
     "extends": "@livingdocs/semantic-release-presets/github"
