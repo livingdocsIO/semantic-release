@@ -1,7 +1,6 @@
-const SemanticReleaseError = require('@semantic-release/error')
-
 module.exports = {
   async verifyCondition (pluginConfig, context) {
+    const {default: SemanticReleaseError} = await import('@semantic-release/error')
     if (context.options.branch) {
       throw new SemanticReleaseError(
         `The 'branch' option got replaced by 'branches' in semantic-release. ` +
