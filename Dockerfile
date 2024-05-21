@@ -1,4 +1,4 @@
-FROM livingdocs/node:18
+FROM livingdocs/node:22
 ADD . /release
 WORKDIR /release
 
@@ -9,4 +9,4 @@ RUN npm ci && \
     /root/.npm /root/.node-gyp \
     /usr/lib/node_modules
 
-ENTRYPOINT ["/sbin/tini", "-g", "--", "/release/run.sh"]
+ENTRYPOINT ["/release/run.sh"]
