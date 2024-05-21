@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Marc Bachmann <marc.brookman@gmail.com>",
   "license": "MIT",
+  "type": "commonjs",
   "peerDependencies": {
     "semantic-release": "^23.1.1"
   },
