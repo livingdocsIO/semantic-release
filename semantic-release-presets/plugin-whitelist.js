@@ -9,17 +9,21 @@ module.exports = {
       )
     }
 
-    const baseBranch = context.options.branches[0]
     const nextRelease = context.nextRelease
 
-    if (!baseBranch || !nextRelease) return true
+    let branchName
+    const branchObject = context.options.branches[0]
+    if (typeof branchObject?.name === 'string') branchName = branchObject.name
+    else if (typeof branchObject === 'string') branchName = branchObject
+
+    if (!branchName || !nextRelease) return true
 
     const whitelist = pluginConfig.whitelist || []
     if (!whitelist.length) return true
 
     for (const condition of whitelist) {
       const regex = new RegExp(condition.baseBranch, 'g')
-      if (regex.test(baseBranch) && !condition.types.includes(nextRelease.type)) {
+      if (regex.test(branchName) && !condition.types.includes(nextRelease.type)) {
         throw new SemanticReleaseError(
           `The '${nextRelease.type}' release type is not allowed.\n` +
           `The branch matching '${condition.baseBranch}' only allows the types ${condition.types.map((w) => `'${w}'`).join(', ')}.\n` + // eslint-disable-line max-len
